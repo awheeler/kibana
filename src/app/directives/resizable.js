@@ -10,12 +10,12 @@ function (angular) {
       return {
         restrict: 'A',
         link: function(scope, elem) {
-          console.log('linked');
 
           var getOpts = function() {
             return {
               maxWidth: elem.parent().width(),
-              grid: elem.parent().width()/12
+              grid: elem.parent().width()/12,
+              handles: 'e'
             };
           };
 
