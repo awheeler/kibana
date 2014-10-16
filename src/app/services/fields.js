@@ -74,12 +74,16 @@ function (angular, _, config) {
         });
       });
     };
-
+    //FIXME: This is an ugly work-around for huge numbers of fields causing the browser to hang
+    var flat_count=0;
     // This should understand both the 1.0 format and the 0.90 format for mappings. Ugly.
     var flatten = function(obj,prefix) {
       var propName = (prefix) ? prefix :  '',
         dot = (prefix) ? '.':'',
         ret = {};
+        // FIXME: Don't continue processing after 10K iterations
+        if (flat_count++> 10000)
+          continue;
       for(var attr in obj){
         if(attr === 'dynamic_templates' || attr === '_default_') {
           continue;
