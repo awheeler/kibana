@@ -81,13 +81,13 @@ function (angular, _, config) {
       var propName = (prefix) ? prefix :  '',
         dot = (prefix) ? '.':'',
         ret = {};
-        // FIXME: Don't continue processing after 10K iterations
-        if (flat_count++> 10000)
-          continue;
       for(var attr in obj){
         if(attr === 'dynamic_templates' || attr === '_default_') {
           continue;
         }
+        // FIXME: Don't continue processing after 10K iterations
+        if (flat_count++> 10000)
+          continue;
         // For now only support multi field on the top level
         // and if there is a default field set.
         if(obj[attr]['type'] === 'multi_field') {
